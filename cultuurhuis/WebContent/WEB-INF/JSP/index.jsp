@@ -9,7 +9,11 @@
 
 </head>
 <body>
-<h1></h1>
-
+<h1>TEST</h1>
+<ul>
+<c:forEach var='genres' items='${genres}'>
+<li><a href="<c:out value='${detailURL}/${genres.id}'/>">${genres.naam}</a></li>
+</c:forEach>
+</ul>
 </body>
 </html>
