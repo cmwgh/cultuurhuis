@@ -12,7 +12,11 @@
 <h1>TEST</h1>
 <ul>
 <c:forEach var='genres' items='${genres}'>
-<li><a href="<c:out value='${detailURL}/${genres.id}'/>">${genres.naam}</a></li>
+
+<li><c:url value='/genres/genre.htm' var='detailURL'>
+<c:param name='id' value='${genres.id}'/>
+</c:url>
+<a href='${detailURL}'>${genres.naam}</a></li>
 </c:forEach>
 </ul>
 </body>
