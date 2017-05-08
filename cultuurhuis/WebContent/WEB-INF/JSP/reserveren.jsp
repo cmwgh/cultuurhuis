@@ -13,14 +13,16 @@
 <img class='recht' alt='voorstellingen' src='images/voorstellingen.png'>
 </div>
 <h2>Genres</h2>
-<ul>
-<c:forEach var='genres' items='${genres}'>
 
-<li><c:url value='/voorstellingen.htm' var='detailURL'>
-<c:param name='id' value='${genres.id}'/>
-</c:url>
-<a href='${detailURL}'>${genres.naam}</a></li>
-</c:forEach>
-</ul>
+<h1>${pizza.naam}</h1>
+<dl><dt>Voorstelling:</dt><dd>${voorstellingen.titel}</dd>
+<dt>Uitvoerders:</dt><dd>${voorstellingen.uitvoerders}</dd>
+<dt>Datum:</dt><dd>${voorstellingen.datum}</dd>
+<dt>Prijs:</dt><dd>&euro; ${voorstellingen.prijs}</dd>
+<dt>Vrije plaatsen:</dt><dd>${voorstellingen.vrijeplaatsen}</dd>
+</dl>
+
+
+
 </body>
 </html>

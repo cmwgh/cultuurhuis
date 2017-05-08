@@ -5,19 +5,19 @@
     <tracking-mode>COOKIE</tracking-mode>
   </session-config>
   <error-page>
-  	<error-code>404</error-code>
-  	<location>/WEB-INF/JSP/404.jsp</location>
+    <error-code>404</error-code>
+    <location>/WEB-INF/JSP/404.jsp</location>
   </error-page>
   <error-page>
-  <exception-type>be.vdab.repositories.RepositoryException</exception-type>
-  <location>/WEB-INF/JSP/repositoryexception.jsp</location>
+    <exception-type>be.vdab.repositories.RepositoryException</exception-type>
+    <location>/WEB-INF/JSP/repositoryexception.jsp</location>
   </error-page>
   <filter>
-<filter-name>ServletFilter</filter-name>
-<filter-class>be.vdab.filters.ServletFilter</filter-class>
-</filter>
-<filter-mapping>
-<filter-name>ServletFilter</filter-name>
-<url-pattern>*.htm</url-pattern>
-</filter-mapping>
+    <filter-name>ServletFilter</filter-name>
+    <filter-class>be.vdab.filters.ServletFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>ServletFilter</filter-name>
+    <url-pattern>*.htm</url-pattern>
+  </filter-mapping>
 </web-app>
