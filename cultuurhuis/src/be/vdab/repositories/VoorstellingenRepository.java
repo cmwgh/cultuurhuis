@@ -16,6 +16,7 @@ public class VoorstellingenRepository extends AbstractRepository {
 	private static final String FIND_ALL = BEGIN_SELECT + "order by datum";
 	private static final String FIND_BY_GENRE = BEGIN_SELECT + "where genreid = ?";
 	private static final String FIND_ONE = BEGIN_SELECT + "where id=?";
+	
 
 	public List<Voorstellingen> findAll(){
 		try (Connection connection = dataSource.getConnection();
