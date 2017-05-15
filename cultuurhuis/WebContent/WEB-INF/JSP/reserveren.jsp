@@ -22,10 +22,11 @@ Voorstellingen ${id}
 <dt>Prijs:</dt><dd>&euro; ${voorstelling.prijs}</dd>
 <dt>Vrije plaatsen:</dt><dd>${voorstelling.vrijeplaatsen}</dd>
 </dl>
-<form method="post" id='reserverenform'>
+<form method='post' id='reserverenform'>
 <label>Plaatsen:<c:if test='${not empty fout}'><span>Tik een getal tussen 1 en ${voorstelling.vrijeplaatsen}</span></c:if></label>
-<input name='plaatsen' type='number' min='1' value='${plaatsen}' required>
+<input name='plaatsen' type='number' min='1' max='${voorstelling.vrijeplaatsen}' value='${plaatsen}' required>
 <input name='id' type='hidden' value='${voorstelling.id}'>
+<input type='text' value='${sessionScope.mandje}'>
 <input type='submit' value='Reserveren' id='reserveknop' name='reserveren'>
 </form>
 
@@ -38,5 +39,6 @@ document.getElementById('reserverenform').onsubmit = function(){
 	document.getElementById('reserveknop').disabled=true;
 };
 </script>
+
 </body>
 </html>
