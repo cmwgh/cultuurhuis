@@ -40,7 +40,27 @@ public class ReservatieServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String idString = request.getParameter("id"); // get id voor dit voorstelling
+
+		display(request, response);
+//		String idString = request.getParameter("id"); // get id voor dit voorstelling
+//		HttpSession session = request.getSession(false);
+//		if (session != null) {
+//			@SuppressWarnings("unchecked")
+//			// Map<Long, Long> mandje = Stream.of(session.getAttribute(MANDJE));
+//			Map<Long, Long> mandje = (Map<Long, Long>) session.getAttribute(MANDJE);
+//			if (mandje != null) {
+//				if (mandje.containsKey(Long.parseLong(idString))) {
+//					request.setAttribute("plaatsen", mandje.get(Long.parseLong(idString)));
+//				}
+//			}
+//		}
+		request.getRequestDispatcher(VIEW).forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		display(request, response);
+/*		String idString = request.getParameter("id"); // get id voor dit voorstelling
 		HttpSession session = request.getSession(false);
 		if (session != null) {
 			@SuppressWarnings("unchecked")
@@ -52,16 +72,8 @@ public class ReservatieServlet extends HttpServlet {
 				}
 			}
 		}
-		request.getRequestDispatcher(VIEW).forward(request, response);
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		String idString = request.getParameter("id"); // get id voor dit voorstelling
-		if (StringUtils.isLong(idString)) { // test if id is a long
-			voorstellingenRepository.read(Long.parseLong(idString))// true = get all fields from table voorstelling
-					.ifPresent(voorstelling -> request.setAttribute("voorstelling", voorstelling)); // if it exists then set voorstelling array with all fields
-		}
+*/		
+		
 		
 		if (request.getParameter("plaatsen") != null) {
 			reserveren(request, response);
@@ -73,9 +85,21 @@ public class ReservatieServlet extends HttpServlet {
 	private void display (HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String idString = request.getParameter("id"); // get id voor dit voorstelling
-		if (StringUtils.isLong(idString)) { // test if id is a long
-			voorstellingenRepository.read(Long.parseLong(idString))// true = get all fields from table voorstelling
-					.ifPresent(voorstelling -> request.setAttribute("voorstelling", voorstelling)); // if it exists then set voorstelling array with all fields
+		if (StringUtils.isLong(idString)) {
+  			voorstellingenRepository.read(Long.parseLong(idString))
+  			.ifPresent(voorstelling -> request.setAttribute("voorstelling", voorstelling));
+		} 
+
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			@SuppressWarnings("unchecked")
+			// Map<Long, Long> mandje = Stream.of(session.getAttribute(MANDJE));
+			Map<Long, Long> mandje = (Map<Long, Long>) session.getAttribute(MANDJE);
+			if (mandje != null) {
+				if (mandje.containsKey(Long.parseLong(idString))) {
+					request.setAttribute("plaatsen", mandje.get(Long.parseLong(idString)));
+				}
+			}
 		}
 	}
 	private void reserveren(HttpServletRequest request, HttpServletResponse response)
