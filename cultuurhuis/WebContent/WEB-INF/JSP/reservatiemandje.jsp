@@ -8,13 +8,42 @@
 <vdab:head title='Het Cultuurhuis'/>
 </head>
 <body>
-<div>
+<div class='recht'>
 <h1>Het Cultuurhuis:reservatiemandje</h1>
 <img class='recht' alt='voorstellingen' src='images/voorstellingen.png'>
 </div>
+<h2>Genres</h2>
+<c:out value='${sessionScope.mandje}'/>
+idsSet: <c:out value='${idsSet}'/>
+mandjeMap: <c:out value='${mandjeMap}'/>
+<table>
+<form>
+<tbody>
+		<tr class="titel"><td>Datum</td><td>Titel</td><td>Uitvoerders</td><td>Prijs</td><td>Plaatsen</td><td><input type='submit' value='Verwijderen' id='verwijderenKnop' name='verwijderen'></td></tr>
+		
+		<c:forEach var='voorstellingen' items='${voorstelling}'>
+		<tr>
+		<td>${voorstellingen.datum}</td>
+		<td><c:out value='${voorstellingen.titel}'/></td>
+		<td><c:out value="${voorstellingen.uitvoerders}"/></td>
+		<td>&euro; <c:out value='${voorstellingen.prijs}'/></td>
+		<td>
+			<c:forEach var='plaatsNodig' items='${mandjeMap}'>
+				<c:if test='${voorstellingen.id eq plaatsNodig.key}'>
+					<c:out value='${plaatsNodig.value}'/>
+				</c:if>
+			</c:forEach>
+		</td>
+<%-- 		<td><c:out value='${voorstellingen.vrijeplaatsen}'/></td> --%>
+ 		<td><!--//reserveren -->
+ 		<input type='checkbox' name='id' value='${voorstellingen.id}'>
+		
+		</td>		
+		</tr>
+		</c:forEach>
 
-
-
-
+</tbody>
+</form>
+</table>
 </body>
 </html>

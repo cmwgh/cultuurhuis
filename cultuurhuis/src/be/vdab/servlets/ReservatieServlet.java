@@ -41,40 +41,15 @@ public class ReservatieServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		display(request, response);
-//		String idString = request.getParameter("id"); // get id voor dit voorstelling
-//		HttpSession session = request.getSession(false);
-//		if (session != null) {
-//			@SuppressWarnings("unchecked")
-//			// Map<Long, Long> mandje = Stream.of(session.getAttribute(MANDJE));
-//			Map<Long, Long> mandje = (Map<Long, Long>) session.getAttribute(MANDJE);
-//			if (mandje != null) {
-//				if (mandje.containsKey(Long.parseLong(idString))) {
-//					request.setAttribute("plaatsen", mandje.get(Long.parseLong(idString)));
-//				}
-//			}
-//		}
+		display(request, response); //display details for the voorstellingen
+
 		request.getRequestDispatcher(VIEW).forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		display(request, response);
-/*		String idString = request.getParameter("id"); // get id voor dit voorstelling
-		HttpSession session = request.getSession(false);
-		if (session != null) {
-			@SuppressWarnings("unchecked")
-			// Map<Long, Long> mandje = Stream.of(session.getAttribute(MANDJE));
-			Map<Long, Long> mandje = (Map<Long, Long>) session.getAttribute(MANDJE);
-			if (mandje != null) {
-				if (mandje.containsKey(Long.parseLong(idString))) {
-					request.setAttribute("plaatsen", mandje.get(Long.parseLong(idString)));
-				}
-			}
-		}
-*/		
-		
-		
+		display(request, response); //display details for the voorstellingen
+	
 		if (request.getParameter("plaatsen") != null) {
 			reserveren(request, response);
 		} else {

@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import be.vdab.entities.Voorstellingen;
 
@@ -16,7 +17,7 @@ public class VoorstellingenRepository extends AbstractRepository {
 	private static final String FIND_ALL = BEGIN_SELECT + "order by datum";
 	private static final String FIND_BY_GENRE = BEGIN_SELECT + "where genreid = ?";
 	private static final String FIND_ONE = BEGIN_SELECT + "where id=?";
-	
+	private static final String FIND_IN_MANDJE = BEGIN_SELECT + "where id in (";
 
 	public List<Voorstellingen> findAll(){
 		try (Connection connection = dataSource.getConnection();
@@ -49,6 +50,32 @@ public class VoorstellingenRepository extends AbstractRepository {
 		}
 	}
 	
+	
+	public List<Voorstellingen> readMandje(Set<Long> ids) { //requires set of ids contained in the session variable
+		StringBuilder sql = new StringBuilder(FIND_IN_MANDJE);
+		ids.forEach(id -> sql.append("?,")); //append ? for each id
+		sql.deleteCharAt(sql.length() - 1); //remove final comma
+		sql.append(')'); //close sql statement
+		
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement statement = connection.prepareStatement(sql.toString())) {
+			int index = 1;
+			for (long id : ids) {
+			statement.setLong(index++, id);
+			}
+			try (ResultSet resultSet = statement.executeQuery()) {
+				List<Voorstellingen> voorstellingen = new ArrayList<>();
+				while (resultSet.next()) {
+					voorstellingen.add(resultSetRijNaarVoorstellingen(resultSet));
+				}
+				return voorstellingen;
+			}
+		} catch (SQLException ex) {
+			throw new RepositoryException(ex);
+		}
+	}
+	
+	
 	public Optional<Voorstellingen> read(long id) {
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement statement = connection.prepareStatement(FIND_ONE)) {
@@ -63,6 +90,9 @@ public class VoorstellingenRepository extends AbstractRepository {
 			throw new RepositoryException(ex);
 		}
 	}
+	
+
+	
 	
 	private Voorstellingen resultSetRijNaarVoorstellingen(ResultSet resultSet) throws SQLException {
 		return new Voorstellingen(resultSet.getLong("id"),resultSet.getString("titel"),resultSet.getString("uitvoerders"),resultSet.getTimestamp("datum"),resultSet.getLong("genreid"),
