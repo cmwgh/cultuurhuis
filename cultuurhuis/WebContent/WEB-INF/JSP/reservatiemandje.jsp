@@ -17,7 +17,7 @@
 idsSet: <c:out value='${idsSet}'/>
 mandjeMap: <c:out value='${mandjeMap}'/>
 <table>
-<form>
+<form method='post'>
 <tbody>
 		<tr class="titel"><td>Datum</td><td>Titel</td><td>Uitvoerders</td><td>Prijs</td><td>Plaatsen</td><td><input type='submit' value='Verwijderen' id='verwijderenKnop' name='verwijderen'></td></tr>
 		<c:set var='total' value='0'/>

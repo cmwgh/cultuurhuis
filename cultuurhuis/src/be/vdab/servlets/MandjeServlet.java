@@ -54,5 +54,22 @@ public class MandjeServlet extends HttpServlet {
 		}
 		request.getRequestDispatcher(VIEW).forward(request, response);
 	}
+	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		HttpSession session = request.getSession(false);
+		String[] idsAlsString=request.getParameterValues("id");
+		if (idsAlsString != null) {
+			@SuppressWarnings("unchecked")
+			Map<Long, Long> mandje = (Map<Long, Long>) session.getAttribute(MANDJE);
+			for(String value : idsAlsString) {
+				//remove value from mandje map
+			}
+		}
+		
+		request.getRequestDispatcher(VIEW).forward(request, response);
+		
+	}
 
 }
