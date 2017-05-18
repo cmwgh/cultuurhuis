@@ -20,7 +20,7 @@ mandjeMap: <c:out value='${mandjeMap}'/>
 <form>
 <tbody>
 		<tr class="titel"><td>Datum</td><td>Titel</td><td>Uitvoerders</td><td>Prijs</td><td>Plaatsen</td><td><input type='submit' value='Verwijderen' id='verwijderenKnop' name='verwijderen'></td></tr>
-		
+		<c:set var='total' value='0'/>
 		<c:forEach var='voorstellingen' items='${voorstelling}'>
 		<tr>
 		<td>${voorstellingen.datum}</td>
@@ -31,6 +31,7 @@ mandjeMap: <c:out value='${mandjeMap}'/>
 			<c:forEach var='plaatsNodig' items='${mandjeMap}'>
 				<c:if test='${voorstellingen.id eq plaatsNodig.key}'>
 					<c:out value='${plaatsNodig.value}'/>
+					<c:set var='subtotal' value='${plaatsNodig.value * voorstellingen.prijs}' />
 				</c:if>
 			</c:forEach>
 		</td>
@@ -40,10 +41,12 @@ mandjeMap: <c:out value='${mandjeMap}'/>
 		
 		</td>		
 		</tr>
+		<c:set var='total' value='${total + subtotal}'/>
 		</c:forEach>
 
 </tbody>
 </form>
 </table>
+<span>Te betalen: &euro;<c:out value='${total}' /></span>
 </body>
 </html>
