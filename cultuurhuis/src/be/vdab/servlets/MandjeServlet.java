@@ -24,12 +24,12 @@ import be.vdab.repositories.VoorstellingenRepository;
 public class MandjeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String VIEW = "/WEB-INF/JSP/reservatiemandje.jsp";
-	private static final String VIEW_ERROR = "/WEB-INF/JSP/reserveren.jsp";	
+	private static final String HOME_URL = "%s/index.htm";	
 	private static final String REDIRECT_URL = "%s/reservatiemandje.htm";
 	private static final String MANDJE = "mandje";
+	private transient boolean mandje_empty = false;
 	
 	private final transient VoorstellingenRepository voorstellingenRepository = new VoorstellingenRepository();
-	//private final transient MandjeRepository mandjeRepository = new MandjeRepository();
 
 	@Resource(name = VoorstellingenRepository.JNDI_NAME)
 	void setDataSource(DataSource dataSource) {
@@ -52,7 +52,7 @@ public class MandjeServlet extends HttpServlet {
 			}
 			
 		} else {
-			request.getRequestDispatcher(VIEW_ERROR).forward(request, response);
+			request.getRequestDispatcher(HOME_URL).forward(request, response);
 		}
 		request.getRequestDispatcher(VIEW).forward(request, response);
 	}
@@ -65,18 +65,28 @@ public class MandjeServlet extends HttpServlet {
 		if (idsAlsString != null) {
 			@SuppressWarnings("unchecked")
 			Map<Long, Long> mandje = (Map<Long, Long>) session.getAttribute(MANDJE);
-//			for(String value : idsAlsString) {
+
 			for (int i = 0; i < idsAlsString.length; i++) {
-//				mandje.remove(value);
-				//remove value from mandje map
-				//mandje.clear();
+
 				mandje.remove(Long.parseLong(idsAlsString[i]));
+			}
+			if (mandje.isEmpty()){
+				mandje_empty = true;
 			}
 			session.setAttribute(MANDJE, mandje);
 		}
-		response.sendRedirect(response.encodeRedirectURL(
-				String.format(REDIRECT_URL, request.getContextPath())));		
+
+		if (mandje_empty) {
+			response.sendRedirect(response.encodeRedirectURL(
+					String.format(HOME_URL, request.getContextPath())));
+			
+		} else {
+			response.sendRedirect(response.encodeRedirectURL(
+					String.format(REDIRECT_URL, request.getContextPath())));
+
+			
 		//request.getRequestDispatcher(VIEW).forward(request, response);
+		}
 		
 	}
 
