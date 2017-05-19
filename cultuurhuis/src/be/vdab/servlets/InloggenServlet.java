@@ -48,18 +48,22 @@ public class InloggenServlet extends HttpServlet {
 		if (fouten.isEmpty()) {
 			List<Klant> klant = klantRepository.findKlant(gebruikersnaam);
 			if (klantRepository.findPw(gebruikersnaam).equals(paswoord)){
-				request.setAttribute("pw", "true");
+				//passwords match
+				if (klant.isEmpty()) {
+					fouten.put("klant", "Verkeerde gebruikersnaam of paswoord.");
+					request.setAttribute("fouten", fouten);
+					request.getRequestDispatcher(VIEW).forward(request, response);
+				}else {
+					request.setAttribute("klantInfo", klantRepository.findKlant(gebruikersnaam));
+					request.getRequestDispatcher(VIEW).forward(request, response);
+					}
 			} else {
-				request.setAttribute("pw", "false");
-			}
-			if (klant.isEmpty()) {
-				fouten.put("klant", "niet gevonden");
+				//passwords do not match
+				fouten.put("klant", "Verkeerde gebruikersnaam of paswoord.");
 				request.setAttribute("fouten", fouten);
 				request.getRequestDispatcher(VIEW).forward(request, response);
-			}else {
-				request.setAttribute("klantInfo", klantRepository.findKlant(gebruikersnaam));
-				request.getRequestDispatcher(VIEW).forward(request, response);
-				}
+			}
+			
 			}
 			else {
 			request.setAttribute("fouten", fouten);
