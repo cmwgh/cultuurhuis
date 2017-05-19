@@ -25,7 +25,9 @@ public class MandjeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String VIEW = "/WEB-INF/JSP/reservatiemandje.jsp";
 	private static final String VIEW_ERROR = "/WEB-INF/JSP/reserveren.jsp";	
+	private static final String REDIRECT_URL = "%s/reservatiemandje.htm";
 	private static final String MANDJE = "mandje";
+	
 	private final transient VoorstellingenRepository voorstellingenRepository = new VoorstellingenRepository();
 	//private final transient MandjeRepository mandjeRepository = new MandjeRepository();
 
@@ -63,12 +65,18 @@ public class MandjeServlet extends HttpServlet {
 		if (idsAlsString != null) {
 			@SuppressWarnings("unchecked")
 			Map<Long, Long> mandje = (Map<Long, Long>) session.getAttribute(MANDJE);
-			for(String value : idsAlsString) {
+//			for(String value : idsAlsString) {
+			for (int i = 0; i < idsAlsString.length; i++) {
+//				mandje.remove(value);
 				//remove value from mandje map
+				//mandje.clear();
+				mandje.remove(Long.parseLong(idsAlsString[i]));
 			}
+			session.setAttribute(MANDJE, mandje);
 		}
-		
-		request.getRequestDispatcher(VIEW).forward(request, response);
+		response.sendRedirect(response.encodeRedirectURL(
+				String.format(REDIRECT_URL, request.getContextPath())));		
+		//request.getRequestDispatcher(VIEW).forward(request, response);
 		
 	}
 

@@ -28,7 +28,7 @@ import be.vdab.repositories.VoorstellingenRepository;
 public class ReservatieServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String VIEW = "/WEB-INF/JSP/reserveren.jsp";
-	private static final String REDIRECT_URL = "%s/reserveren.htm";
+	private static final String REDIRECT_URL = "%s/reservatiemandje.htm";
 	private static final String MANDJE = "mandje";
 	private final transient VoorstellingenRepository voorstellingenRepository = new VoorstellingenRepository();
 
@@ -68,7 +68,7 @@ public class ReservatieServlet extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		if (session != null) {
 			@SuppressWarnings("unchecked")
-			// Map<Long, Long> mandje = Stream.of(session.getAttribute(MANDJE));
+			
 			Map<Long, Long> mandje = (Map<Long, Long>) session.getAttribute(MANDJE);
 			if (mandje != null) {
 				if (mandje.containsKey(Long.parseLong(idString))) {
@@ -77,6 +77,7 @@ public class ReservatieServlet extends HttpServlet {
 			}
 		}
 	}
+	
 	private void reserveren(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
@@ -90,11 +91,9 @@ public class ReservatieServlet extends HttpServlet {
 		mandje.put(Long.parseLong(idString), Long.parseLong(plaatsen));
 		session.setAttribute(MANDJE, mandje);
 
-		// request.getSession().setAttribute("id", request.getParameter("id"));
+		response.sendRedirect(response.encodeRedirectURL(
+				String.format(REDIRECT_URL, request.getContextPath())));
+		//request.getRequestDispatcher(VIEW).forward(request, response);
 
-		request.getRequestDispatcher(VIEW).forward(request, response);
-
-		// response.sendRedirect(response.encodeRedirectURL(
-		// String.format(REDIRECT_URL, request.getContextPath())));
 	}
 }

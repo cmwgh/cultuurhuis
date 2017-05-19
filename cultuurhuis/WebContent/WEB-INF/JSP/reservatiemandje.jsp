@@ -13,8 +13,7 @@
 <img class='recht' alt='voorstellingen' src='images/voorstellingen.png'>
 </div>
 <h2>Genres</h2>
-<c:out value='${sessionScope.mandje}'/>
-idsSet: <c:out value='${idsSet}'/>
+idsSet: <c:out value='${idsSet}'/><br/>
 mandjeMap: <c:out value='${mandjeMap}'/>
 <table>
 <form method='post'>
