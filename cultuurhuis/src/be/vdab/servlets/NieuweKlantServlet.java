@@ -12,14 +12,14 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/nieuweklant.htm")
 public class NieuweKlantServlet extends HttpServlet {
+	private static final String VIEW = "/WEB-INF/JSP/nieuweklant.jsp";
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher(VIEW).forward(request, response);
 	}
 
 }

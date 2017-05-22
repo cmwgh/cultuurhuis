@@ -23,7 +23,7 @@ public class InloggenServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private static final String VIEW = "/WEB-INF/JSP/inloggen.jsp";
-	private static final String HOME_URL = "/WEB-INF/JSP/index.jsp";
+	private static final String NIEUWE_KLANT = "%s/nieuweklant.htm";
 	private final transient KlantRepository klantRepository = new KlantRepository();	
 	@Resource(name = KlantRepository.JNDI_NAME)
 	void setDataSource(DataSource dataSource) {
@@ -37,6 +37,13 @@ public class InloggenServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if (request.getParameter("nieuweklant") != null) {
+			response.sendRedirect(response.encodeRedirectURL(
+					String.format(NIEUWE_KLANT, request.getContextPath())));
+			//response.sendRedirect(NIEUWE_KLANT);
+				return;
+			//request.getRequestDispatcher(NIEUWE_KLANT).forward(request, response);
+		}
 		Map<String, String> fouten = new HashMap<>();
 		String gebruikersnaam = request.getParameter("gebruikersnaam");
 		String paswoord = request.getParameter("paswoord");

@@ -22,8 +22,8 @@ required type="password" <c:if test='${not empty klantInfo}'>disabled</c:if>></l
 <input type='submit' value='Zoek me op' <c:if test='${not empty klantInfo}'>disabled</c:if>>
 </form>
 <br/>
-<form>
-<input type='submit' value='Ik ben nieuw' <c:if test='${not empty klantInfo}'>disabled</c:if>>
+<form method="post">
+<input type='submit' value='Ik ben nieuw' name='nieuweklant' <c:if test='${not empty klantInfo}'>disabled</c:if>>
 </form>
 <span>${fouten.klant}
 

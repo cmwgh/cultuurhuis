@@ -9,39 +9,50 @@
 </head>
 <body>
 <div>
-<h1>Het Cultuurhuis:voorstellingen</h1>
+<h1>Het Cultuurhuis:nieuwe klant</h1>
 <img class='recht' alt='voorstellingen' src='images/voorstellingen.png'>
 </div>
 <form method="post" id='nieuweklantform'>
-<label>voornaam:<span>${fouten.idfout}</span></label>
+<label>voornaam:</label>
 <input name='plaatsen' value='' required>
 
-<label>Familienaam:<span>${fouten.idfout}</span></label>
+<label>Familienaam:</label>
 <input name='plaatsen' value='' required>
 
-<label>Straat:<span>${fouten.idfout}</span></label>
+<label>Straat:</label>
 <input name='plaatsen' value='' required>
 
-<label>Huisnr.:<span>${fouten.idfout}</span></label>
+<label>Huisnr.:</label>
 <input name='plaatsen' value='' required>
 
-<label>Postcode:<span>${fouten.idfout}</span></label>
+<label>Postcode:</label>
 <input name='plaatsen' value='' required>
 
-<label>Gemeente:<span>${fouten.idfout}</span></label>
+<label>Gemeente:</label>
 <input name='plaatsen' value='' required>
 
-<label>Gebruikersnaam:<span>${fouten.idfout}</span></label>
+<label>Gebruikersnaam:</label>
 <input name='plaatsen' value='' required>
 
-<label>Paswoord:<span>${fouten.idfout}</span></label>
+<label>Paswoord:</label>
 <input name='plaatsen' value='' required>
 
-<label>Herhaal paswoord:<span>${fouten.idfout}</span></label>
+<label>Herhaal paswoord:</label>
 <input name='plaatsen' value='' required>
 
 <input type='submit' value='ok' id='okknop' name='ok'>
 </form>
+
+<div id='fouten'>
+<span>${fouten.voornaam}</span>
+<span>${fouten.familienaam}</span>
+<span>${fouten.straat}</span>
+<span>${fouten.huisnr}</span>
+<span>${fouten.postcode}</span>
+<span>${fouten.gemeente}</span>
+<span>${fouten.gebruikersnaam}</span>
+<span>${fouten.paswoord}</span>
+</div>
 
 <script>
 document.getElementById('nieuweklantform').onsubmit = function(){

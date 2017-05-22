@@ -2,19 +2,19 @@ package be.vdab.entities;
 
 
 public class Klant {
-	private long id;
+	private int id;
 	private String voornaam;
 	private String familienaam;
 	private String straat;
-	private int huisnr;
-	private int postcode;
+	private String huisnr;
+	private String postcode;
 	private String gemeente;
 	private String gebruikersnaam;
 	private String paswoord;
 	
 	
 	
-	public Klant(long id, String voornaam, String familienaam, String straat, int huisnr, int postcode, String gemeente,
+	public Klant(int id, String voornaam, String familienaam, String straat, String huisnr, String postcode, String gemeente,
 			String gebruikersnaam, String paswoord) {
 		super();
 		this.id = id;
@@ -32,7 +32,7 @@ public class Klant {
 	public long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getVoornaam() {
@@ -53,16 +53,16 @@ public class Klant {
 	public void setStraat(String straat) {
 		this.straat = straat;
 	}
-	public int getHuisnr() {
+	public String getHuisnr() {
 		return huisnr;
 	}
-	public void setHuisnr(int huisnr) {
+	public void setHuisnr(String huisnr) {
 		this.huisnr = huisnr;
 	}
-	public int getPostcode() {
+	public String getPostcode() {
 		return postcode;
 	}
-	public void setPostcode(int postcode) {
+	public void setPostcode(String postcode) {
 		this.postcode = postcode;
 	}
 	public String getGemeente() {
