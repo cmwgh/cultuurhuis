@@ -74,6 +74,14 @@ public class Klant {
 	public String getGebruikersnaam() {
 		return gebruikersnaam;
 	}
+	@Override
+	public String toString() {
+		return "Klant [id=" + id + ", voornaam=" + voornaam + ", familienaam=" + familienaam + ", straat=" + straat
+				+ ", huisnr=" + huisnr + ", postcode=" + postcode + ", gemeente=" + gemeente + ", gebruikersnaam="
+				+ gebruikersnaam + ", paswoord=" + paswoord + "]";
+	}
+
+
 	public void setGebruikersnaam(String gebruikersnaam) {
 		this.gebruikersnaam = gebruikersnaam;
 	}

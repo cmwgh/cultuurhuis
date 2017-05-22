@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import be.vdab.entities.Klant;
 
@@ -16,6 +17,7 @@ public class KlantRepository extends AbstractRepository{
 	//private static final String findDetails = BEGIN_SELECT + "order by naam";
 
 
+	//public List<Klant> findKlant(String gebruikersnaam){
 	public List<Klant> findKlant(String gebruikersnaam){
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement statement = connection.prepareStatement(FIND_KLANT)) {
@@ -31,6 +33,21 @@ public class KlantRepository extends AbstractRepository{
 			throw new RepositoryException(ex);
 		}
 		}
+	
+
+
+	
+	private Klant resultSetRijNaarKlant(ResultSet resultSet) throws SQLException {
+		return new Klant(resultSet.getLong("id"),
+				resultSet.getString("voornaam"),
+				resultSet.getString("familienaam"),
+				resultSet.getString("straat"),
+				resultSet.getInt("huisnr"),
+				resultSet.getInt("postcode"),
+				resultSet.getString("gemeente"),
+				resultSet.getString("gebruikersnaam"),
+				resultSet.getString("paswoord"));
+	}
 
 	public String findPw(String gebruikersnaam){
 		try (Connection connection = dataSource.getConnection();
@@ -47,17 +64,6 @@ public class KlantRepository extends AbstractRepository{
 			throw new RepositoryException(ex);
 		}
 		}
-	
-	private Klant resultSetRijNaarKlant(ResultSet resultSet) throws SQLException {
-		return new Klant(resultSet.getLong("id"),
-				resultSet.getString("voornaam"),
-				resultSet.getString("familienaam"),
-				resultSet.getString("straat"),
-				resultSet.getInt("huisnr"),
-				resultSet.getInt("postcode"),
-				resultSet.getString("gemeente"),
-				resultSet.getString("gebruikersnaam"),
-				resultSet.getString("paswoord"));
-	}
+
 
 }

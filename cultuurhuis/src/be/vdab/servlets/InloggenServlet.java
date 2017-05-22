@@ -1,6 +1,7 @@
 package be.vdab.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,15 +20,16 @@ import be.vdab.repositories.KlantRepository;
 
 @WebServlet("/inloggen.htm")
 public class InloggenServlet extends HttpServlet {
+
+	private static final long serialVersionUID = 1L;
+	private static final String VIEW = "/WEB-INF/JSP/inloggen.jsp";
+	private static final String HOME_URL = "/WEB-INF/JSP/index.jsp";
+	private final transient KlantRepository klantRepository = new KlantRepository();	
 	@Resource(name = KlantRepository.JNDI_NAME)
 	void setDataSource(DataSource dataSource) {
 		klantRepository.setDataSource(dataSource);
 	}
-	private static final long serialVersionUID = 1L;
-	private static final String VIEW = "/WEB-INF/JSP/inloggen.jsp";
-	private static final String HOME_URL = "/WEB-INF/JSP/index.jsp";
-	
-	private final transient KlantRepository klantRepository = new KlantRepository();
+
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -46,6 +48,7 @@ public class InloggenServlet extends HttpServlet {
 			fouten.put("paswoord", "verplicht");
 		}
 		if (fouten.isEmpty()) {
+			//Klant klant = (Klant) klantRepository.findKlant(gebruikersnaam);
 			List<Klant> klant = klantRepository.findKlant(gebruikersnaam);
 			if (klantRepository.findPw(gebruikersnaam).equals(paswoord)){
 				//passwords match
@@ -54,6 +57,7 @@ public class InloggenServlet extends HttpServlet {
 					request.setAttribute("fouten", fouten);
 					request.getRequestDispatcher(VIEW).forward(request, response);
 				}else {
+					//request.setAttribute("klantInfo", klant);
 					request.setAttribute("klantInfo", klantRepository.findKlant(gebruikersnaam));
 					request.getRequestDispatcher(VIEW).forward(request, response);
 					}
