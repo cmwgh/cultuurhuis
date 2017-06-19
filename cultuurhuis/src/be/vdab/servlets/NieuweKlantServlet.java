@@ -22,6 +22,7 @@ import be.vdab.entities.Klant;
 @WebServlet("/nieuweklant.htm")
 public class NieuweKlantServlet extends HttpServlet {
 	private static final String VIEW = "/WEB-INF/JSP/nieuweklant.jsp";
+	private static final String INLOGGEN = "/WEB-INF/JSP/inloggen.jsp";
 	private static final long serialVersionUID = 1L;
 	private final transient KlantRepository klantRepository = new KlantRepository();
 	@Resource(name = KlantRepository.JNDI_NAME)
@@ -72,7 +73,10 @@ public class NieuweKlantServlet extends HttpServlet {
 			fouten.put("paswoord", "paswoord niet ingevuld.");
 		}
 		if (fouten.isEmpty()) {
-			request.getRequestDispatcher(VIEW).forward(request, response);
+			klantRepository.create(new Klant(request.getParameter("voornaam"), request.getParameter("familienaam"), 
+					request.getParameter("straat"), request.getParameter("huisnr"), request.getParameter("postcode"), 
+					request.getParameter("gemeente"),	gebruikersnaam, request.getParameter("paswoord")));
+			request.getRequestDispatcher(INLOGGEN).forward(request, response);
 		} else {
 		request.setAttribute("fouten", fouten);
 		request.getRequestDispatcher(VIEW).forward(request, response);
