@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import be.vdab.entities.GastenBoekEntry;
 import be.vdab.entities.Klant;
 
 public class KlantRepository extends AbstractRepository{
@@ -36,31 +35,31 @@ public class KlantRepository extends AbstractRepository{
 		}
 		}
 	
-	public void create(Klant entry) {
-		try (Connection connection = dataSource.getConnection();
-				PreparedStatement statement = connection.prepareStatement(CREATE)) {
-			statement.setString(1, entry.getNaam());
-			statement.setString(1, entry.getNaam());
-			statement.setString(1, entry.getNaam());
-			statement.setString(1, entry.getNaam());
-			statement.setString(1, entry.getNaam());
-			statement.setString(1, entry.getNaam());
-			statement.setString(1, entry.getNaam());
-			statement.setString(1, entry.getNaam());
-			statement.executeUpdate();
-		} catch (SQLException ex) {
-			throw new RepositoryException(ex);
-		}
-	}
+//	public void create(Klant entry) {
+//		try (Connection connection = dataSource.getConnection();
+//				PreparedStatement statement = connection.prepareStatement(CREATE)) {
+//			statement.setString(1, entry.getNaam());
+//			statement.setString(1, entry.getNaam());
+//			statement.setString(1, entry.getNaam());
+//			statement.setString(1, entry.getNaam());
+//			statement.setString(1, entry.getNaam());
+//			statement.setString(1, entry.getNaam());
+//			statement.setString(1, entry.getNaam());
+//			statement.setString(1, entry.getNaam());
+//			statement.executeUpdate();
+//		} catch (SQLException ex) {
+//			throw new RepositoryException(ex);
+//		}
+//	}
 
 	
 	private Klant resultSetRijNaarKlant(ResultSet resultSet) throws SQLException {
-		return new Klant(resultSet.getLong("id"),
+		return new Klant(resultSet.getInt("id"),
 				resultSet.getString("voornaam"),
 				resultSet.getString("familienaam"),
 				resultSet.getString("straat"),
-				resultSet.getInt("huisnr"),
-				resultSet.getInt("postcode"),
+				resultSet.getString("huisnr"),
+				resultSet.getString("postcode"),
 				resultSet.getString("gemeente"),
 				resultSet.getString("gebruikersnaam"),
 				resultSet.getString("paswoord"));
@@ -81,7 +80,8 @@ public class KlantRepository extends AbstractRepository{
 			throw new RepositoryException(ex);
 		}
 		}
-	
 
+	
+	
 
 }

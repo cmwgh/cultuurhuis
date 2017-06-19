@@ -48,6 +48,7 @@ public class InloggenServlet extends HttpServlet {
 		String gebruikersnaam = request.getParameter("gebruikersnaam");
 		String paswoord = request.getParameter("paswoord");
 		
+		
 		if (!Klant.isGebruikersnaamValid(gebruikersnaam)) {
 			fouten.put("naam", "verplicht");
 		}

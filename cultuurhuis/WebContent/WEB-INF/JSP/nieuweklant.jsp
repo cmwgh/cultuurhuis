@@ -14,44 +14,46 @@
 </div>
 <form method="post" id='nieuweklantform'>
 <label>voornaam:</label>
-<input name='plaatsen' value='' required>
+<input name='voornaam' value='' required>
 
 <label>Familienaam:</label>
-<input name='plaatsen' value='' required>
+<input name='familienaam' value='' required>
 
 <label>Straat:</label>
-<input name='plaatsen' value='' required>
+<input name='straat' value='' required>
 
 <label>Huisnr.:</label>
-<input name='plaatsen' value='' required>
+<input name='huisnr' value='' required>
 
 <label>Postcode:</label>
-<input name='plaatsen' value='' required>
+<input name='postcode' value='' required>
 
 <label>Gemeente:</label>
-<input name='plaatsen' value='' required>
+<input name='gemeente' value='' required>
 
 <label>Gebruikersnaam:</label>
-<input name='plaatsen' value='' required>
+<input name='gebruikersnaam' value='' required>
 
 <label>Paswoord:</label>
-<input name='plaatsen' value='' required>
+<input name='paswoord' value='' required>
 
 <label>Herhaal paswoord:</label>
-<input name='plaatsen' value='' required>
+<input name='paswoord2' value='' required>
 
 <input type='submit' value='ok' id='okknop' name='ok'>
 </form>
 
 <div id='fouten'>
-<span>${fouten.voornaam}</span>
-<span>${fouten.familienaam}</span>
-<span>${fouten.straat}</span>
-<span>${fouten.huisnr}</span>
-<span>${fouten.postcode}</span>
-<span>${fouten.gemeente}</span>
-<span>${fouten.gebruikersnaam}</span>
-<span>${fouten.paswoord}</span>
+<span>${fouten.voornaam}</span><br/>
+<span>${fouten.familienaam}</span><br/>
+<span>${fouten.straat}</span><br/>
+<span>${fouten.huisnr}</span><br/>
+<span>${fouten.postcode}</span><br/>
+<span>${fouten.gemeente}</span><br/>
+<span>${fouten.gebruikersnaam}</span><br/>
+<span>${fouten.paswoord}</span><br/>
+<span>${fouten.paswoordmatch}</span><br/>
+<span>${fouten.gebruikersnaambezet}</span><br/>
 </div>
 
 <script>
