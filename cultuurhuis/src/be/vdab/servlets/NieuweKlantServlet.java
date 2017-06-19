@@ -42,10 +42,10 @@ public class NieuweKlantServlet extends HttpServlet {
 		List<Klant> klant = klantRepository.findKlant(gebruikersnaam);
 		
 		if (!klant.isEmpty()) {
-			fouten.put("gebruikersnaambezet", "kies een andere gebruikersnaam");
+			fouten.put("gebruikersnaambezet", "kies een andere gebruikersnaam.");
 		}
 		if (!(request.getParameter("paswoord").equals(request.getParameter("paswoord2")))) {
-			fouten.put("paswoordmatch", "Paswoord en Herhaal pawoord zijn verschillend");
+			fouten.put("paswoordmatch", "Paswoord en Herhaal pawoord zijn verschillend.");
 		}
 		if (request.getParameter("voornaam") == null){
 			fouten.put("voornaam", "Voornaam niet ingevuld.");

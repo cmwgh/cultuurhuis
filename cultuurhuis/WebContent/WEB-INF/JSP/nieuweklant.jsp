@@ -43,17 +43,14 @@
 <input type='submit' value='ok' id='okknop' name='ok'>
 </form>
 
+
+
+
 <div id='fouten'>
-<span>${fouten.voornaam}</span><br/>
-<span>${fouten.familienaam}</span><br/>
-<span>${fouten.straat}</span><br/>
-<span>${fouten.huisnr}</span><br/>
-<span>${fouten.postcode}</span><br/>
-<span>${fouten.gemeente}</span><br/>
-<span>${fouten.gebruikersnaam}</span><br/>
-<span>${fouten.paswoord}</span><br/>
-<span>${fouten.paswoordmatch}</span><br/>
-<span>${fouten.gebruikersnaambezet}</span><br/>
+<c:forEach var='entry' items='${fouten}'>
+<span>${entry.value}</span><br/>
+</c:forEach>
+
 </div>
 
 <script>
