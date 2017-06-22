@@ -76,6 +76,8 @@ public class NieuweKlantServlet extends HttpServlet {
 			klantRepository.create(new Klant(request.getParameter("voornaam"), request.getParameter("familienaam"), 
 					request.getParameter("straat"), request.getParameter("huisnr"), request.getParameter("postcode"), 
 					request.getParameter("gemeente"),	gebruikersnaam, request.getParameter("paswoord")));
+			
+			request.setAttribute("klantInfo", klantRepository.findKlant(gebruikersnaam));
 			request.getRequestDispatcher(INLOGGEN).forward(request, response);
 		} else {
 		request.setAttribute("fouten", fouten);
