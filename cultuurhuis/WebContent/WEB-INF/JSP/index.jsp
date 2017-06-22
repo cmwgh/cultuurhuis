@@ -8,19 +8,12 @@
 <vdab:head title='Het Cultuurhuis'/>
 </head>
 <body>
-<div>
-<h1>Het Cultuurhuis:voorstellingen</h1>
-<img class='recht' alt='voorstellingen' src='images/voorstellingen.png'>
-</div>
-<h2>Genres</h2>
-<ul>
-<c:forEach var='genres' items='${genres}'>
+<div class='linklijn'>
 
-<li><c:url value='/voorstellingen.htm' var='detailURL'>
-<c:param name='id' value='${genres.id}'/>
-</c:url>
-<a href='${detailURL}'>${genres.naam}</a></li>
-</c:forEach>
-</ul>
+<img alt='voorstellingen' src='images/voorstellingen.png'>
+<h1>Het Cultuurhuis:voorstellingen</h1>
+</div>
+<br/>
+<vdab:genres/>
 </body>
 </html>

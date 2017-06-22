@@ -10,4 +10,8 @@
 		<name>head</name>
 		<path>/WEB-INF/tags/vdab/head.tag</path>
 	</tag-file>
+	<tag-file>
+		<name>genres</name>
+		<path>/WEB-INF/tags/vdab/genres.tag</path>
+	</tag-file>
 </taglib>
