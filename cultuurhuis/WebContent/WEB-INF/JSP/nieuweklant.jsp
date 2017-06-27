@@ -8,10 +8,37 @@
 <vdab:head title='Het Cultuurhuis'/>
 </head>
 <body>
-<div>
+<div class='linklijn'>
+
+<img alt='voorstellingen' src='images/nieuweklant.png'>
 <h1>Het Cultuurhuis:nieuwe klant</h1>
-<img class='recht' alt='voorstellingen' src='images/voorstellingen.png'>
 </div>
+
+
+<div>
+<ul class='voorstellingen'>
+	<li class='voorstellingen'>
+		<a href='index.htm'>
+		Voorstellingen
+		</a>
+	</li>
+	<c:if test='${not empty mandje}'>
+	<li class='voorstellingen'>
+		<a href='reservatiemandje.htm'>
+		Reservatiemandje
+		</a>
+	</li>
+	<li class='voorstellingen'>
+		<a href='inloggen.htm'>
+		Bevestiging reservatie
+		</a>
+	</li>
+	</c:if>
+</ul>
+</div>
+<br/>
+<br/>
+<div>
 <form method="post" id='nieuweklantform'>
 <label>voornaam:</label>
 <input name='voornaam' value='' required>
@@ -42,7 +69,7 @@
 
 <input type='submit' value='ok' id='okknop' name='ok'>
 </form>
-
+</div>
 
 
 

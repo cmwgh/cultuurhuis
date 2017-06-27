@@ -8,11 +8,30 @@
 <vdab:head title='Het Cultuurhuis'/>
 </head>
 <body>
+<div class='linklijn'>
+
+<img alt='voorstellingen' src='images/bevestig.png'>
+<h1>Het Cultuurhuis:bevestiging reservaties</h1>
+</div>
+<div>
 
 <div>
-<h1>Het Cultuurhuis:bevestiging reservaties</h1>
-<img class='recht' alt='voorstellingen' src='images/voorstellingen.png'>
+<ul class='voorstellingen'>
+	<li class='voorstellingen'>
+		<a href='index.htm'>
+		Voorstellingen
+		</a>
+	</li>
+	<c:if test='${not empty mandje}'>
+	<li class='voorstellingen'>
+		<a href='reservatiemandje.htm'>
+		Reservatiemandje
+		</a>
+	</li>
+	</c:if>
+</ul>
 </div>
+<br/>
 <h2>Stap 1:wie ben je?</h2>
 <form method="post">
 <label>Gebruikersnaam:<span>${fouten.naam}</span><input name='gebruikersnaam' autofocus

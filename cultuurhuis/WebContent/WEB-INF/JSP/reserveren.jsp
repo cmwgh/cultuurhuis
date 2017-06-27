@@ -8,13 +8,15 @@
 <vdab:head title='Het Cultuurhuis'/>
 </head>
 <body>
-<div>
-<h1>Het Cultuurhuis:voorstellingen</h1>
-<img class='recht' alt='voorstellingen' src='images/voorstellingen.png'>
+<div class='linklijn'>
+
+<img alt='voorstellingen' src='images/reserveren.png'>
+<h1>Het Cultuurhuis:reserveren</h1>
 </div>
 
-Voorstellingen ${id}
-
+<a href='index.htm'>
+Voorstellingen
+</a>
 
 <dl><dt>Voorstelling:</dt><dd>${voorstelling.titel}</dd>
 <dt>Uitvoerders:</dt><dd>${voorstelling.uitvoerders}</dd>
@@ -26,7 +28,7 @@ Voorstellingen ${id}
 <label>Plaatsen:<c:if test='${not empty fout}'><span>Tik een getal tussen 1 en ${voorstelling.vrijeplaatsen}</span></c:if></label>
 <input name='plaatsen' type='number' min='1' max='${voorstelling.vrijeplaatsen}' value='${plaatsen}' required>
 <input name='id' type='hidden' value='${voorstelling.id}'>
-<input type='text' value='${sessionScope.mandje}'>
+<!-- <input type='text' value='${sessionScope.mandje}'> -->
 <input type='submit' value='Reserveren' id='reserveknop' name='reserveren'>
 </form>
 

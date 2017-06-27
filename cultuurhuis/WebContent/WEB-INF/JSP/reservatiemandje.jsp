@@ -1,4 +1,4 @@
-<%@page contentType='text/html' pageEncoding='UTF-8' session='false'%>
+<%@page contentType='text/html' pageEncoding='UTF-8' session='true'%>
 <%@taglib uri='http://vdab.be/tags' prefix='vdab'%>
 <%@taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix='fmt' uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -8,13 +8,25 @@
 <vdab:head title='Het Cultuurhuis'/>
 </head>
 <body>
-<div class='recht'>
+<div class='linklijn'>
+<img class='recht' alt='voorstellingen' src='images/mandje.png'>
 <h1>Het Cultuurhuis:reservatiemandje</h1>
-<img class='recht' alt='voorstellingen' src='images/voorstellingen.png'>
 </div>
-<h2>Genres</h2>
-idsSet: <c:out value='${idsSet}'/><br/>
-mandjeMap: <c:out value='${mandjeMap}'/>
+
+<ul class='voorstellingen'>
+	<li class='voorstellingen'>
+		<a href='index.htm'>
+		Voorstellingen
+		</a>
+	</li>
+	<li class='voorstellingen'>
+		<a href='inloggen.htm'>
+		Bevestiging reservatie
+		</a>
+	</li>
+</ul>
+<%-- idsSet: <c:out value='${idsSet}'/><br/> --%>
+<%-- mandjeMap: <c:out value='${mandjeMap}'/> --%>
 <table>
 <form method='post'>
 <tbody>
