@@ -1,10 +1,8 @@
 package be.vdab.servlets;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -85,7 +83,6 @@ public class MandjeServlet extends HttpServlet {
 					String.format(REDIRECT_URL, request.getContextPath())));
 
 			
-		//request.getRequestDispatcher(VIEW).forward(request, response);
 		}
 		
 	}

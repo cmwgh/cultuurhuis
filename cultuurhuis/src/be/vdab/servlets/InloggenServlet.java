@@ -1,7 +1,6 @@
 package be.vdab.servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +16,6 @@ import javax.sql.DataSource;
 
 import be.vdab.entities.Klant;
 import be.vdab.repositories.KlantRepository;
-import be.vdab.util.StringUtils;
 
 
 @WebServlet("/inloggen.htm")
@@ -48,23 +46,17 @@ public class InloggenServlet extends HttpServlet {
 			
 			response.sendRedirect(response.encodeRedirectURL(
 					String.format(NIEUWE_KLANT, request.getContextPath())));
-			//response.sendRedirect(NIEUWE_KLANT);
 				return;
-			//request.getRequestDispatcher(NIEUWE_KLANT).forward(request, response);
 		}
 		
 		if (request.getParameter("bevestigen") != null) {
-			//get klantId, send it further
-			//String klantIdString = request.getParameter("klantId");
 			if (request.getParameter("klantId") != null) {
 			session.setAttribute("klantIdLong", request.getParameter("klantId"));
 			}
 			
 			response.sendRedirect(response.encodeRedirectURL(
 					String.format(BEVESTIGEN, request.getContextPath())));
-			//response.sendRedirect(NIEUWE_KLANT);
 				return;
-			//request.getRequestDispatcher(NIEUWE_KLANT).forward(request, response);
 		}
 		
 		
@@ -83,7 +75,7 @@ public class InloggenServlet extends HttpServlet {
 			fouten.put("paswoord", "verplicht");
 		}
 		if (fouten.isEmpty()) {
-			//Klant klant = (Klant) klantRepository.findKlant(gebruikersnaam);
+
 			List<Klant> klant = klantRepository.findKlant(gebruikersnaam);
 			if (klantRepository.findPw(gebruikersnaam).equals(paswoord)){
 				//passwords match
@@ -92,9 +84,9 @@ public class InloggenServlet extends HttpServlet {
 					request.setAttribute("fouten", fouten);
 					request.getRequestDispatcher(VIEW).forward(request, response);
 				}else { //successful login
-					//request.setAttribute("klantInfo", klant);
+
 					session.setAttribute(KLANTINFO, klantRepository.findKlant(gebruikersnaam));
-					//request.setAttribute("klantInfo", klantRepository.findKlant(gebruikersnaam));
+
 					request.getRequestDispatcher(VIEW).forward(request, response);
 					}
 			} else {
@@ -111,8 +103,6 @@ public class InloggenServlet extends HttpServlet {
 		}
 		
 		
-		
-		//doGet(request, response);
 	}
 
 }

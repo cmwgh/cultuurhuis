@@ -36,19 +36,7 @@ public class GenreRepository extends AbstractRepository {
 		return new Genres(resultSet.getLong("id"), resultSet.getString("naam"));
 	}		
 		
-//	public List<String> findAll() {
-//		try (Connection connection = dataSource.getConnection();
-//				Statement statement = connection.createStatement();
-//				ResultSet resultSet = statement.executeQuery(FIND_ALL)) {
-//			List<String> genres = new ArrayList<>();
-//			while (resultSet.next()) {
-//				genres.add(resultSet.getString("naam"));
-//			}
-//			return genres;
-//		} catch (SQLException ex) {
-//			throw new RepositoryException(ex);
-//		}
-//	}
+
 	
 
 }

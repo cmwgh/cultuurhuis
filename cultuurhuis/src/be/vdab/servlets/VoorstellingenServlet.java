@@ -51,17 +51,6 @@ public class VoorstellingenServlet extends HttpServlet {
 				
 			}//fout handling later here
 			}
-//			if (fouten.isEmpty()) {
-//				
-//			} else {
-//				request.setAttribute("fouten", fouten);
-//			}
-		
-		
-		
-		
-//		List<Voorstellingen> voorstellingen = voorstellingenRepository.findAll();
-//		request.setAttribute("voorstelling", voorstellingen);
 
 		request.getRequestDispatcher(VIEW).forward(request, response); /* must be last */
 		}

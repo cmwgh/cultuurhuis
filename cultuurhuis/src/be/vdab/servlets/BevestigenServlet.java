@@ -1,10 +1,7 @@
 package be.vdab.servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -17,8 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
-import be.vdab.entities.Klant;
-import be.vdab.repositories.KlantRepository;
 import be.vdab.repositories.VoorstellingenRepository;
 import be.vdab.util.StringUtils;
 
@@ -30,7 +25,6 @@ public class BevestigenServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String VIEW = "/WEB-INF/JSP/bevestigen.jsp";
 	private static final String MANDJE = "mandje";
-	//private final transient KlantRepository klantRepository = new KlantRepository();	
 	private final transient VoorstellingenRepository voorstellingenRepository = new VoorstellingenRepository();
 	long klantIdL;
 	
@@ -52,15 +46,7 @@ public class BevestigenServlet extends HttpServlet {
 
 		
 		if (session != null) {
-//			@SuppressWarnings("unchecked")
-//			List<Klant> klant =  (List<Klant>) session.getAttribute("klantInfo");
-//			for(Klant tp : klant) {
-//				long klantId = ((Klant)tp).getId();
-//			}
-			//List klantDetails = (List) session.getAttribute("klantInfo");
-			//long klantid = (long) klant.get(0);
 
-			//klantID = klant.get(0);
 			@SuppressWarnings("unchecked")
 			Map<Long, Long> klantMandje = (Map<Long, Long>) session.getAttribute(MANDJE);
 			Map<Long, Long> mandjeMislukte = new HashMap<>();
@@ -81,13 +67,10 @@ public class BevestigenServlet extends HttpServlet {
 				Set<Long> idsAlsSet = klantMandje.keySet();
 				request.setAttribute("mandjeMap", klantMandje);
 				request.setAttribute("mandjeMislukteMap", mandjeMislukte);
-				//request.setAttribute("idsSet", idsAlsSet);
-				//request.setAttribute("voorstellingGelukte", klantMandje);
 				if (idsAlsSet != null) {
 					request.setAttribute("voorstellingGelukte", voorstellingenRepository.readMandje(idsAlsSet));
 				}
 			}
-			//request.setAttribute("mandjeMap", MANDJE);
 			request.setAttribute("test1", "true");
 			}
 		}

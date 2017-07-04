@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import be.vdab.entities.Klant;
 
@@ -15,10 +14,8 @@ public class KlantRepository extends AbstractRepository{
 	private static final String FIND_KLANT = BEGIN_SELECT + "where gebruikersnaam = ?";
 	private static final String FIND_PW = "select paswoord from klanten where gebruikersnaam = ?";
 	private final static String NIEUWE_KLANT = "insert into klanten(voornaam,familienaam,straat,huisnr,postcode,gemeente,gebruikersnaam,paswoord) values (?,?,?,?,?,?,?,?)";
-	//private static final String findDetails = BEGIN_SELECT + "order by naam";
 
 
-	//public List<Klant> findKlant(String gebruikersnaam){
 	public List<Klant> findKlant(String gebruikersnaam){
 		try (Connection connection = dataSource.getConnection();
 				PreparedStatement statement = connection.prepareStatement(FIND_KLANT)) {

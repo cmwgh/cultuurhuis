@@ -1,3 +1,4 @@
+
 package be.vdab.entities;
 
 import java.math.BigDecimal;

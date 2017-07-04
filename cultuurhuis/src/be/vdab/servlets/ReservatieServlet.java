@@ -1,13 +1,8 @@
 package be.vdab.servlets;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.LinkedHashSet;
 import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -93,7 +88,6 @@ public class ReservatieServlet extends HttpServlet {
 
 		response.sendRedirect(response.encodeRedirectURL(
 				String.format(REDIRECT_URL, request.getContextPath())));
-		//request.getRequestDispatcher(VIEW).forward(request, response);
 
 	}
 }
