@@ -47,7 +47,7 @@ required type="password" <c:if test='${not empty klantInfo}'>disabled</c:if>></l
 <span>${fouten.klant}
 
 <c:forEach var='klantInf' items='${klantInfo}'>
-${klantInf.voornaam} ${klantInf.familienaam} ${klantInf.straat} ${klantInf.huisnr} ${klantInf.postcode} ${klantInf.gemeente} 
+${klantInf.voornaam} ${klantInf.familienaam} ${klantInf.straat} ${klantInf.huisnr} ${klantInf.postcode} ${klantInf.gemeente}
 </c:forEach>
 <%-- ${klantInfo.size()} --%>
 <%-- ${klantInfo.toString()} --%>
@@ -55,9 +55,9 @@ ${klantInf.voornaam} ${klantInf.familienaam} ${klantInf.straat} ${klantInf.huisn
 
 </span>
 <h2>Stap 2:Bevestigen</h2>
-<form>
-<input type='submit' value='Bevestigen' <c:if test='${empty klantInfo}'>disabled</c:if>>
+<form method="post">
+<input type='hidden' name='klantId' value='${klantInfo[0].id}'>
+<input type='submit' value='Bevestigen' name='bevestigen' <c:if test='${empty klantInfo}'>disabled</c:if>>
 </form>
-${pw}
 </body>
 </html>
